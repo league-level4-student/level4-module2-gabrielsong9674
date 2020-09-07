@@ -32,13 +32,24 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		return null;
+		if(s1.length() > s2.length()) {
+			return s1;
+		}
+		else if(s1.length() < s2.length()) {
+			return s2;
+		}
+		else {
+			return "equal";
+		}
 	}
 
 	
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
-		return null;
+		if(s.contains("underscores")) {
+			s = s.replace(' ', '_');
+		}
+		return s;
 	}
 
 	
@@ -46,23 +57,84 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		return null;
+		int firsts1 = 0;
+		int firsts2 = 0;
+		int firsts3 = 0;
+		Character lasts1 = ' ';
+		Character lasts2 = ' ';
+		Character lasts3 = ' ';
+
+		for (int i = 0; i < s1.length(); i++) {
+			if(Character.isLetter(s1.charAt(i))) {
+				 firsts1 = i;
+				break;
+			}
+		}
+		for(int i = firsts1+1; i < s1.length(); i ++) {
+			if(s1.charAt(i-1) == ' ') {
+				lasts1 = s1.charAt(i);
+			}
+		}
+		
+		for (int i = 0; i < s2.length(); i++) {
+			if(Character.isLetter(s2.charAt(i))) {
+				 firsts2 = i;
+				break;
+			}
+		}
+		for(int i = firsts2+1; i < s2.length(); i ++) {
+			if(s2.charAt(i-1) == ' ') {
+				lasts2 = s2.charAt(i);
+			}
+		}
+		
+		for (int i = 0; i < s3.length(); i++) {
+			if(Character.isLetter(s3.charAt(i))) {
+				 firsts3 = i;
+				break;
+			}
+		}
+		for(int i = firsts3+1; i < s3.length(); i ++) {
+			if(s3.charAt(i-1) == ' ') {
+				lasts3 = s3.charAt(i);
+			}
+		}
+		
+		if(lasts1 < lasts2 && lasts1 < lasts3) {
+			return s1.strip();
+		}
+		else if(lasts2 < lasts1 && lasts2 < lasts3){
+			return s2.strip();
+		}
+		else {
+			return s3.strip();
+		}
 	}
 	
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int sum = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if(Character.isDigit(s.charAt(i))) {
+				sum += Character.getNumericValue(s.charAt(i));
+			}
+		}
+		return sum;
 	}
 	
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
+		for (int i = 0; i < s.length(); i++) {
+			
+		}
 		return 0;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
+		
 		return null;
 	}
 
