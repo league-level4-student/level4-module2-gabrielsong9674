@@ -1,5 +1,6 @@
 package StringMethods;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -126,28 +127,41 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		for (int i = 0; i < s.length(); i++) {
-			
+		int count = 0;
+		for (int i = 0; i < s.length() - substring.length() + 1; i++) {
+			if(substring.equals(s.substring(i, i+substring.length()))) {
+				count++;
+			}
 		}
-		return 0;
+		return count;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		
-		return null;
+		byte[] plain = s.getBytes();
+		byte newKey = (byte)key;
+		String encrypted = Utilities.encrypt(plain, newKey);
+		return encrypted;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		String decrypted = Utilities.decrypt(s, (byte) key);
+		return decrypted;
 	}
 
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		String word[] = s.split(" ");
+		int count = 0;
+		for(int i = 0; i < word.length; i ++) {
+			if(word[i].endsWith(substring)) {
+				count ++;
+			}
+		}
+		return count;
 	}
 	
 
@@ -155,7 +169,10 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int first = s.indexOf(substring) + substring.length();
+		int last = s.lastIndexOf(substring);
+		int distance = last - first;
+		return distance;
 	}
 
 
@@ -163,7 +180,25 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		return true;
+		String reverse = "";
+		for(int i = s.length()-1; i >= 0; i --) {
+			reverse = reverse + s.charAt(i);
+			
+		}
+		reverse = reverse.replaceAll("\s", "");
+		s = s.replaceAll("\s", "");
+		reverse = reverse.replaceAll("\\p{P}", "");
+		s = s.replaceAll("\\p{P}", "");
+		System.out.println(reverse);
+		System.out.println("13"+ 5 + 3);
+		if(reverse.compareToIgnoreCase(s) == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+		
 	}
 	
 }
@@ -176,6 +211,11 @@ class Utilities {
 			plaintext[i] = (byte) (plaintext[i] ^ key);
 		}
 		return Base64.getEncoder().encodeToString(plaintext);
+	}
+
+	public static void encrypt(String s, char key) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static String decrypt(String cyphertext, byte key) {
