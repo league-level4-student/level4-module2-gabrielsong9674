@@ -190,7 +190,7 @@ public class StringMethods {
 		reverse = reverse.replaceAll("\\p{P}", "");
 		s = s.replaceAll("\\p{P}", "");
 		System.out.println(reverse);
-		System.out.println("13"+ 5 + 3);
+		
 		if(reverse.compareToIgnoreCase(s) == 0) {
 			return true;
 		}
